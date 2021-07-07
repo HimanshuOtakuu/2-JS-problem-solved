@@ -1,45 +1,51 @@
 //input array
-var arr = [2,2,2,2,4,4,4,4];
+var arr = [1,2,2,4,4,4,4,5];
+var modeMap = {}; 
+
+for(var i = 0; i < arr.length; i++)  //creating and object to keep track of the occurances
+{
+    var el = arr[i];
+    if(modeMap[el] == null)       
+        modeMap[el] = 1;
+    else
+        modeMap[el]++;  
+}
 
 console.log(`[${max(arr)}, ${min(arr)}]`); //calling max and min fuction for the values
 
-
+//minimum fuction
 function min(array)
 {
-    if(array.length == 0)
+    if(array.length == 0)              //if array is empty return 0
         return null;
-    var modeMap = {};       //map to store key value pairs
-    var minEl = array[0], minCount = 1;    //intialization
+
+    var minEl = array[0], minCount = Infinity; 
+
     for(var i = 0; i < array.length; i++)
     {
         var el = array[i];
-        if(modeMap[el] == null)           //1st time occurance
-            modeMap[el] = 1;
-        else
-            modeMap[el]++;  
-        if(modeMap[el] < minCount)       //find min
+        if(modeMap[el] < minCount)       //finding the least frequent element
         {
             minEl = el;
             minCount = modeMap[el];
         }
     }
+
     return minEl;
 }
 
+//maximum function
 function max(array)
 {
-    if(array.length == 0)
+    if(array.length == 0)    //if array is empty return 0
         return null;
-    var modeMap = {};     //map to store key value pairs
-    var maxEl = array[0], maxCount = 1;   //intialization
+        
+    var maxEl = array[0], maxCount = 1;   
+
     for(var i = 0; i < array.length; i++)
     {
         var el = array[i];
-        if(modeMap[el] == null)       //1st time occurance
-            modeMap[el] = 1;
-        else
-            modeMap[el]++;  
-        if(modeMap[el] > maxCount)    //find max
+        if(modeMap[el] >  maxCount)       //finding the most frequent element
         {
             maxEl = el;
             maxCount = modeMap[el];
